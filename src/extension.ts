@@ -1,12 +1,16 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log('Congratulations, your extension "remify" is now active!');
-  let disposable = vscode.commands.registerCommand("remify.helloWorld", () => {
-    vscode.window.showInformationMessage("Hello World from REMify!");
-  });
+  let converterDisposable = vscode.commands.registerCommand(
+    "remify.stringToUnit",
+    () => {}
+  );
+  let convertWithOptionsDisposable = vscode.commands.registerCommand(
+    "remify.normalConverter",
+    () => {}
+  );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(converterDisposable, convertWithOptionsDisposable);
 }
 
 export function deactivate() {}

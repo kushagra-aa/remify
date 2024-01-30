@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "remify.helloWorld",
-        "title": "Hello World"
+        "command": "remify.stringToUnit",
+        "title": "Convert with expression"
+      },
+      {
+        "command": "remify.normalConverter",
+        "title": "Convert with options"
       }
     ]
   },
