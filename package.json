@@ -2,12 +2,34 @@
   "name": "remify",
   "displayName": "REMify",
   "description": "Making Converting CSS Size Units Easy N Fun",
-  "version": "0.0.1",
+  "publisher": "kushagra-aa",
+  "homepage": "https://github.com/kushagra-aa/remify/blob/master/README.md",
+  "bugs": {
+    "url": "https://github.com/kushagra-aa/remify/issues",
+    "email": "kushagraagnihotri24@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kushagra-aa/remify"
+  },
+  "version": "1.0.2",
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.83.0"
   },
   "categories": [
     "Other"
+  ],
+  "icon": "assets/icon.png",
+  "galleryBanner": {
+    "color": "#263c39",
+    "theme": "dark"
+  },
+  "keywords": [
+    "wrap html",
+    "wrap code",
+    "wrap tags",
+    "wrap text",
+    "react fragment wrap"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
@@ -15,13 +37,26 @@
     "commands": [
       {
         "command": "remify.stringToUnit",
-        "title": "Convert with expression"
+        "title": "Convert String Expression",
+        "shortTitle": "Convert Expression"
       },
       {
         "command": "remify.normalConverter",
-        "title": "Convert with options"
+        "title": "Select and Convert to desired value",
+        "shortTitle": "Normal Unit Convert"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "REMify configuration",
+      "properties": {
+        "remify.baseFontSize": {
+          "type": "string",
+          "default": "16px",
+          "description": "The Base Font Size of the project"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
@@ -35,7 +70,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
+    "@types/vscode": "^1.83.0",
     "@types/mocha": "^10.0.2",
     "@types/node": "18.x",
     "@typescript-eslint/eslint-plugin": "^6.7.3",

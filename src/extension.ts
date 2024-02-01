@@ -1,13 +1,15 @@
 import * as vscode from "vscode";
+import { normalController, stringToUnitController } from "./commandControllers";
 
 export function activate(context: vscode.ExtensionContext) {
+  console.log("REMify :>> ");
   let converterDisposable = vscode.commands.registerCommand(
-    "remify.stringToUnit",
-    () => {}
+    "remify.normalConverter",
+    normalController
   );
   let convertWithOptionsDisposable = vscode.commands.registerCommand(
-    "remify.normalConverter",
-    () => {}
+    "remify.stringToUnit",
+    stringToUnitController
   );
 
   context.subscriptions.push(converterDisposable, convertWithOptionsDisposable);
