@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 import { normalController, stringToUnitController } from "./commandControllers";
 
 export function activate(context: vscode.ExtensionContext) {
-  console.log("REMify :>> ");
   let converterDisposable = vscode.commands.registerCommand(
     "remify.normalConverter",
     normalController

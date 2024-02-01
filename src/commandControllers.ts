@@ -1,50 +1,12 @@
 import { UnitsEnum } from "./types/units";
-import {
-  addUnit,
-  extractUnit,
-  extractValue,
-  splitString,
-} from "./helpers/stringHelpers";
+import { addUnit, extractValue } from "./helpers/stringHelpers";
 import unitConverter from "./helpers/unitConverter";
 import getInput from "./helpers/getInput";
 import { UNITS_OPTIONS } from "./constants";
 import getQuickPick from "./helpers/getQuickPick";
 import showInfo from "./helpers/showInfo";
-
-// Expected expression : 16px to rem
-const stringToUnitController = async () => {
-  const expression =
-    (await getInput("Enter the expression Eg:'16px to rem'")) || "";
-  if (!expression || expression === "") {
-    return "";
-  }
-  const expressionArray = splitString(expression); // ['16px','to','rem']
-  let expectedUnit: UnitsEnum = expressionArray[2].toLowerCase() as UnitsEnum; //"rem"
-  const currentUnit: UnitsEnum = extractUnit(expressionArray[0]) as UnitsEnum; //"px"
-  const currentValue = expressionArray[0].toLowerCase(); //"16px"
-  const result = converterController(currentValue, currentUnit, expectedUnit);
-  showInfo(`${result}`);
-};
-
-// Expected expression : 16px
-const normalController = async () => {
-  const expression = (await getInput("Enter the expression Eg:'16px'")) || "";
-  let expectedUnitInput = await getQuickPick(
-    UNITS_OPTIONS,
-    "Select the expected unit Eg:'rem'"
-  );
-  if (
-    (!expression || expression === "") &&
-    (!expectedUnitInput || expectedUnitInput === "")
-  ) {
-    return "";
-  }
-  const expectedUnit = expectedUnitInput.toLowerCase() as UnitsEnum;
-  const currentUnit: UnitsEnum = extractUnit(expression) as UnitsEnum; //"px"
-  const currentValue = expression.toLowerCase(); //"16px"
-  const result = converterController(currentValue, currentUnit, expectedUnit);
-  showInfo(`${result}`);
-};
+import { validateExpression, validateOptions } from "./helpers/validations";
+import showError from "./helpers/showError";
 
 const converterController = (
   currentValue: string,
@@ -54,20 +16,15 @@ const converterController = (
   const baseValue = 16;
   let result = 0;
 
-  console.log({ expectedUnit, currentUnit, currentValue, baseValue, result });
-  console.log(expectedUnit !== currentUnit);
   if (expectedUnit !== currentUnit) {
     switch (currentUnit) {
       case "px":
-        console.log("--PX--");
         switch (expectedUnit) {
           case "rem":
             result = unitConverter.pxToRem(currentValue, baseValue);
-            console.log('"px -> rem" :>> ', result);
             break;
           case "%":
             result = unitConverter.pxToPercent(currentValue, baseValue);
-            console.log('"px -> %" :>> ', result);
             break;
           case "ch":
             result = unitConverter.pxToCh(currentValue, baseValue);
@@ -318,12 +275,53 @@ const converterController = (
         expectedUnit = currentUnit;
     }
   } else {
-    console.log("Else!!");
     result = extractValue(currentValue);
     expectedUnit = currentUnit;
   }
 
   return addUnit(result, expectedUnit);
+};
+
+// Expected expression : 16px to rem
+const stringToUnitController = async () => {
+  try {
+    const expression =
+      (await getInput("Enter the expression Eg:'16px to rem'")) || "";
+    if (!expression || expression === "") {
+      return "";
+    }
+    const { expectedUnit, currentUnit, currentValue } =
+      validateExpression(expression);
+    if (!expectedUnit || !currentUnit || !currentValue) {
+      return;
+    }
+    const result = converterController(currentValue, currentUnit, expectedUnit);
+    showInfo(`${result}`);
+  } catch (e) {
+    showError("Oops! Something Went Sideways");
+  }
+};
+
+// Expected expression : 16px
+const normalController = async () => {
+  try {
+    const expression = (await getInput("Enter the expression Eg:'16px'")) || "";
+    let expectedUnitInput = await getQuickPick(
+      UNITS_OPTIONS,
+      "Select the expected unit Eg:'rem'"
+    );
+    const { expectedUnit, currentUnit, currentValue } = validateOptions(
+      expression,
+      expectedUnitInput
+    );
+    if (!expectedUnit || !currentUnit || !currentValue) {
+      return;
+    }
+    const result = converterController(currentValue, currentUnit, expectedUnit);
+    showInfo(`${result}`);
+  } catch (e) {
+    showError("Oops! Something Went Sideways");
+  }
 };
 
 export { normalController, stringToUnitController };
