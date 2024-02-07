@@ -7,6 +7,7 @@ import getQuickPick from "./helpers/getQuickPick";
 import showInfo from "./helpers/showInfo";
 import { validateExpression, validateOptions } from "./helpers/validations";
 import showError from "./helpers/showError";
+import copyToClipboard from "./helpers/copyToClipboard";
 
 const converterController = (
   currentValue: string,
@@ -296,7 +297,7 @@ const stringToUnitController = async () => {
       return;
     }
     const result = converterController(currentValue, currentUnit, expectedUnit);
-    showInfo(`${result}`);
+    copyToClipboard(`${result}`);
   } catch (e) {
     showError("Oops! Something Went Sideways");
   }
@@ -318,7 +319,7 @@ const normalController = async () => {
       return;
     }
     const result = converterController(currentValue, currentUnit, expectedUnit);
-    showInfo(`${result}`);
+    copyToClipboard(`${result}`);
   } catch (e) {
     showError("Oops! Something Went Sideways");
   }
