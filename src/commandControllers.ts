@@ -8,6 +8,9 @@ import showInfo from "./helpers/showInfo";
 import { validateExpression, validateOptions } from "./helpers/validations";
 import showError from "./helpers/showError";
 import copyToClipboard from "./helpers/copyToClipboard";
+import getSelection from "./helpers/getSelections";
+import replaceInEditor from "./helpers/replaceInEditor";
+import { window } from "vscode";
 
 const converterController = (
   currentValue: string,
@@ -306,20 +309,54 @@ const stringToUnitController = async () => {
 // Expected expression : 16px
 const normalController = async () => {
   try {
-    const expression = (await getInput("Enter the expression Eg:'16px'")) || "";
-    let expectedUnitInput = await getQuickPick(
-      UNITS_OPTIONS,
-      "Select the expected unit Eg:'rem'"
-    );
-    const { expectedUnit, currentUnit, currentValue } = validateOptions(
-      expression,
-      expectedUnitInput
-    );
-    if (!expectedUnit || !currentUnit || !currentValue) {
+    const editor = window.activeTextEditor;
+    if (!editor || editor === null) {
       return;
     }
-    const result = converterController(currentValue, currentUnit, expectedUnit);
-    copyToClipboard(`${result}`);
+
+    const selections = getSelection(editor);
+    if (selections.length > 0) {
+      let expectedUnitInput = await getQuickPick(
+        UNITS_OPTIONS,
+        "Select the expected unit Eg:'rem'"
+      );
+      editor.edit((e) => {
+        selections.forEach(async (selection) => {
+          const { expectedUnit, currentUnit, currentValue } = validateOptions(
+            selection.text,
+            expectedUnitInput
+          );
+          if (!expectedUnit || !currentUnit || !currentValue) {
+            return;
+          }
+          const result = converterController(
+            currentValue,
+            currentUnit,
+            expectedUnit
+          );
+          await replaceInEditor(e, selection.selection, result);
+        });
+      });
+    } else {
+      let expression = (await getInput("Enter the expression Eg:'16px'")) || "";
+      let expectedUnitInput = await getQuickPick(
+        UNITS_OPTIONS,
+        "Select the expected unit Eg:'rem'"
+      );
+      const { expectedUnit, currentUnit, currentValue } = validateOptions(
+        expression,
+        expectedUnitInput
+      );
+      if (!expectedUnit || !currentUnit || !currentValue) {
+        return;
+      }
+      const result = converterController(
+        currentValue,
+        currentUnit,
+        expectedUnit
+      );
+      await copyToClipboard(`${result}`);
+    }
   } catch (e) {
     showError("Oops! Something Went Sideways");
   }
