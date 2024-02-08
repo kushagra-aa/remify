@@ -11,13 +11,14 @@ import copyToClipboard from "./helpers/copyToClipboard";
 import getSelection from "./helpers/getSelections";
 import replaceInEditor from "./helpers/replaceInEditor";
 import { window } from "vscode";
+import { getBaseFontSize } from "./helpers/getConfig";
 
 const converterController = (
   currentValue: string,
   currentUnit: UnitsEnum,
   expectedUnit: UnitsEnum
 ) => {
-  const baseValue = 16;
+  const baseValue = extractValue(getBaseFontSize() || "16px");
   let result = 0;
 
   if (expectedUnit !== currentUnit) {
