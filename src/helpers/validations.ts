@@ -45,12 +45,12 @@ const validateExpression = (expression: string): ValidatedOptionType => {
     handleError(`Entered Expression can't be empty`);
     return validatedOptions;
   }
-  const expressionArray = splitString(expression); // ['16px','to','rem']
-  if (expressionArray.length! <= 2) {
+  const expressionArray = splitString(expression); // ['16px','rem']
+  if (expressionArray.length < 2) {
     handleError(`Entered Expression is Invalid '${expression}'`);
     return validatedOptions;
   }
-  return validateOptions(expressionArray[0], expressionArray[2]);
+  return validateOptions(expressionArray[0], expressionArray[1]);
 };
 
 export { validateOptions, validateExpression };

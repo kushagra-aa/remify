@@ -13,7 +13,12 @@ export const extractValueNUnit = (
 });
 // Use the trim() method to remove any leading/trailing spaces.
 // Split the trimmed text into an array of words using the split() method with a space as the delimiter.
-export const splitString = (text: string): string[] => text.trim().split(/\s+/);
+export const splitString = (text: string): string[] => {
+  const splitKeywords = ["to", "-->", "->", "=", ">"];
+  const pattern = new RegExp(`(?:${splitKeywords.join("|")})`);
+  const trimmedText = text.trim();
+  return trimmedText.split(pattern).map((s) => s.trim());
+};
 // To check if the given string is a valid unit and returns UnitEnum Type.
 export const checkUnit = (text: string) =>
   UNITS_OPTIONS.find((u) => u.toLowerCase() === text.toLowerCase());

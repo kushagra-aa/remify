@@ -3,6 +3,7 @@
   "displayName": "REMify",
   "description": "Making Converting CSS Size Units Easy N Fun",
   "publisher": "kushagra-aa",
+  "license": "ISC",
   "homepage": "https://github.com/kushagra-aa/remify/blob/master/README.md",
   "bugs": {
     "url": "https://github.com/kushagra-aa/remify/issues",
