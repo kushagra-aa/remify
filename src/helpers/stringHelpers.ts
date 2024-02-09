@@ -21,8 +21,10 @@ export const splitString = (text: string): string[] => {
 };
 // To check if the given string is a valid unit and returns UnitEnum Type.
 export const checkUnit = (text: string) =>
-  UNITS_OPTIONS.find((u) => u.toLowerCase() === text.toLowerCase());
+  UNITS_OPTIONS.find((u) => u.toLowerCase() === text.trim().toLowerCase());
 
 // To check if the given string is a valid value(`16px`) and returns string.
 export const checkValue = (text: string) =>
-  text.match(/^(\d*)([a-zA-Z]+)$/) ? text.toLowerCase() : undefined;
+  text.trim().match(/^(\d*)([a-zA-Z]+)$/)
+    ? text.trim().toLowerCase()
+    : undefined;
