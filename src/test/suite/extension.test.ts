@@ -6,7 +6,7 @@ import validationTests from "./helpersTests/validations.test";
 suite("Extension Test Suite", () => {
   vscode.window.showInformationMessage("Start all tests.");
 
-  //   converterTests();
   // stringHelperTests();
-  validationTests();
+  // validationTests();
+  converterTests();
 });

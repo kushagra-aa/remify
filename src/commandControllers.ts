@@ -7,7 +7,7 @@ import copyToClipboard from "./helpers/copyToClipboard";
 import getSelection from "./helpers/getSelections";
 import replaceInEditor from "./helpers/replaceInEditor";
 import { window } from "vscode";
-import converterController from "./helpers/conversionController";
+import conversionController from "./helpers/conversionController";
 
 // Expected expression : 16px to rem
 const stringToUnitController = async () => {
@@ -22,7 +22,11 @@ const stringToUnitController = async () => {
     if (!expectedUnit || !currentUnit || !currentValue) {
       return;
     }
-    const result = converterController(currentValue, currentUnit, expectedUnit);
+    const result = conversionController(
+      currentValue,
+      currentUnit,
+      expectedUnit
+    );
     copyToClipboard(`${result}`);
   } catch (e) {
     showError("Oops! Something Went Sideways");
@@ -52,7 +56,7 @@ const normalController = async () => {
           if (!expectedUnit || !currentUnit || !currentValue) {
             return;
           }
-          const result = converterController(
+          const result = conversionController(
             currentValue,
             currentUnit,
             expectedUnit
@@ -73,7 +77,7 @@ const normalController = async () => {
       if (!expectedUnit || !currentUnit || !currentValue) {
         return;
       }
-      const result = converterController(
+      const result = conversionController(
         currentValue,
         currentUnit,
         expectedUnit

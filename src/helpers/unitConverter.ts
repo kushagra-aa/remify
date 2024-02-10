@@ -27,7 +27,12 @@ const convert = (
   val: string,
   base: number
 ): number => {
-  return parseFloat(converterFunction(extractValue(val), base).toFixed(3));
+  const extractedValue = extractValue(val);
+  const result = converterFunction(extractedValue, base);
+  const resultFixed = result.toFixed(3);
+  const resultFixedFloat = parseFloat(resultFixed);
+
+  return resultFixedFloat;
 };
 
 const unitConverter = {

@@ -3,7 +3,7 @@ import { addUnit, extractValue } from "./stringHelpers";
 import unitConverter from "./unitConverter";
 import { getBaseFontSize } from "./getConfig";
 
-const converterController = (
+const conversionController = (
   currentValue: string,
   currentUnit: UnitsEnum,
   expectedUnit: UnitsEnum
@@ -105,4 +105,4 @@ const converterController = (
   return addUnit(result, expectedUnit);
 };
 
-export default converterController;
+export default conversionController;

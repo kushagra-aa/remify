@@ -31,22 +31,28 @@ export const emToPc = (value: number, basePixelSize: number) =>
 // - base: The base font size in pixels (used for reference).
 // Note: 1 point is equal to 1/12 inch, which is approximately equal to the base font size divided by 12 in pixels.
 // Divide the point value by the base font size and by 12 to get the Rem value.
-export const ptToRem = (val: number, base: number) => val / base / 12;
-export const ptToPx = (value: number, basePixelSize: number) =>
-  (value * basePixelSize) / 12;
-export const ptToEm = (value: number, basePixelSize: number) =>
-  value / (12 / 16);
-export const ptToPc = (value: number, basePixelSize: number) => value / 2;
+export const ptToRem = (val: number, baseFontSize: number) =>
+  val / baseFontSize;
+
+export const ptToPx = (val: number, baseFontSize: number) => (val * 96) / 72; // Assuming 96dpi screen resolution
+
+export const ptToEm = (val: number, baseFontSize: number) => val / baseFontSize;
+
+export const ptToPc = (val: number, baseFontSize: number) =>
+  val / baseFontSize / 16;
 
 // Converts a pica value to a Rem value.
 // - val: The pica value to convert (e.g., 6pc).
 // - base: The base font size in pixels (used for reference).
 // Note: 1 pica is equal to 1/6 inch, which is approximately equal to the base font size divided by 6 in pixels.
 // Divide the pica value by the base font size and by 6 to get the Rem value.
-export const pcToRem = (val: number, base: number) => val / base / 6;
-export const pcToPx = (value: number, basePixelSize: number) =>
-  (value * basePixelSize) / 6;
-export const pcToEm = (value: number, basePixelSize: number) =>
-  value / (6 / 16);
-export const pcToPt = (value: number, basePixelSize: number) =>
-  value / ((6 * 16) / 100);
+export const pcToRem = (val: number, baseFontSize: number) =>
+  (val * 16) / baseFontSize;
+
+export const pcToPx = (val: number, baseFontSize: number) =>
+  (((val * 96) / 72) * 16) / 16; // Adjust for pc units
+
+export const pcToEm = (val: number, baseFontSize: number) =>
+  (val * 16) / baseFontSize;
+
+export const pcToPt = (val: number, baseFontSize: number) => val * 16;
