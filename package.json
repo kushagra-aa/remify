@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/kushagra-aa/remify"
   },
-  "version": "1.0.2",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.83.0"
   },
@@ -26,11 +26,12 @@
     "theme": "dark"
   },
   "keywords": [
-    "wrap html",
-    "wrap code",
-    "wrap tags",
-    "wrap text",
-    "react fragment wrap"
+    "converter",
+    "css converter",
+    "rem to px",
+    "px to rem",
+    "px to rem",
+    "css unit converter"
   ],
   "activationEvents": [],
   "main": "./dist/extension.js",
@@ -38,13 +39,11 @@
     "commands": [
       {
         "command": "remify.stringToUnit",
-        "title": "Convert String Expression",
-        "shortTitle": "Convert Expression"
+        "title": "Quick Convert: Expression"
       },
       {
         "command": "remify.normalConverter",
-        "title": "Select and Convert to desired value",
-        "shortTitle": "Normal Unit Convert"
+        "title": "Quick Convert: Selected Value"
       }
     ],
     "configuration": {
