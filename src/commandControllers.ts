@@ -1,11 +1,11 @@
-import getInput from "./helpers/getInput";
+import getInput from "./lib/getInput";
 import { UNITS_OPTIONS } from "./constants";
-import getQuickPick from "./helpers/getQuickPick";
+import getQuickPick from "./lib/getQuickPick";
 import { validateExpression, validateOptions } from "./helpers/validations";
-import showError from "./helpers/showError";
-import copyToClipboard from "./helpers/copyToClipboard";
-import getSelection from "./helpers/getSelections";
-import replaceInEditor from "./helpers/replaceInEditor";
+import showError from "./lib/showError";
+import copyToClipboard from "./lib/copyToClipboard";
+import getSelection from "./lib/getSelections";
+import replaceInEditor from "./lib/replaceInEditor";
 import { window } from "vscode";
 import conversionController from "./helpers/conversionController";
 

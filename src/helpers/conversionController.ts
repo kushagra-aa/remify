@@ -1,7 +1,7 @@
 import { UnitsEnum } from "./../types/units";
 import { addUnit, extractValue } from "./stringHelpers";
 import unitConverter from "./unitConverter";
-import { getBaseFontSize } from "./getConfig";
+import { getBaseFontSize } from "../lib/getConfig";
 
 const conversionController = (
   currentValue: string,
