@@ -1,237 +1,97 @@
 import * as assert from "assert";
-import { getBaseFontSize } from "../../../lib/getConfig";
-import { extractValue } from "../../../helpers/stringHelpers";
 import { describe, it } from "mocha";
-import unitConverter from "../../../helpers/unitConverter";
+import conversionController from "../../../helpers/conversionController";
 
-export default function converterTests() {
+export default function conversionControllerTests() {
   describe("Conversion functions", () => {
-    const basePixelSize = extractValue(getBaseFontSize() || "16px"); // Use your desired base size
-
-    remConverterTests(basePixelSize);
-    pxConverterTests(basePixelSize);
-    emConverterTests(basePixelSize);
-    ptConverterTests(basePixelSize);
-    pcConverterTests(basePixelSize);
-  });
-}
-
-function remConverterTests(basePixelSize: number) {
-  describe("Rem Conversions", () => {
-    describe("remToPx", () => {
-      it("should convert 1rem to base pixel size", () => {
-        const result = unitConverter.remToPx("1rem", basePixelSize);
-        assert.equal(result, basePixelSize);
+    describe("Rem", () => {
+      it("to Px", () => {
+        const result = conversionController("1rem", "rem", "px");
+        assert.equal(result, "16px");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.remToPx("0.5rem", basePixelSize);
-        assert.equal(result, basePixelSize / 2);
+      it("to Em", () => {
+        const result = conversionController("1rem", "rem", "em");
+        assert.equal(result, "1em");
+      });
+      it("to Pt", () => {
+        const result = conversionController("1rem", "rem", "pt");
+        assert.equal(result, "1.333pt");
+      });
+      it("to Pt", () => {
+        const result = conversionController("1rem", "rem", "pc");
+        assert.equal(result, "2.667pc");
       });
     });
-    describe("remToEm", () => {
-      it("should convert 1rem to 1em", () => {
-        const result = unitConverter.remToEm("1rem", basePixelSize);
-        assert.equal(result, 1);
+    describe("Px", () => {
+      it("to Rem", () => {
+        const result = conversionController("16px", "px", "rem");
+        assert.equal(result, "1rem");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.remToEm("0.5rem", basePixelSize);
-        assert.equal(result, 0.5);
+      it("to Em", () => {
+        const result = conversionController("16px", "px", "em");
+        assert.equal(result, "1em");
       });
-    });
-    describe("remToPt", () => {
-      it("should convert 1rem to 100Pt", () => {
-        const result = unitConverter.remToPt("1rem", basePixelSize);
-        assert.equal(result, 1.333);
+      it("to Pt", () => {
+        const result = conversionController("16px", "px", "pt");
+        assert.equal(result, "12pt");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.remToPt("0.5rem", basePixelSize);
-        assert.equal(result, 0.667);
+      it("to Pt", () => {
+        const result = conversionController("16px", "px", "pc");
+        assert.equal(result, "6pc");
       });
     });
-    describe("remToPc", () => {
-      it("should convert 1rem to 100Pc", () => {
-        const result = unitConverter.remToPc("1rem", basePixelSize);
-        assert.equal(result, 2.667);
+    describe("Em", () => {
+      it("to Rem", () => {
+        const result = conversionController("1em", "em", "rem");
+        assert.equal(result, "1rem");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.remToPc("0.5rem", basePixelSize);
-        assert.equal(result, 1.333);
+      it("to Px", () => {
+        const result = conversionController("1em", "em", "px");
+        assert.equal(result, "16px");
       });
-    });
-  });
-}
-function pxConverterTests(basePixelSize: number) {
-  describe("Px Conversions", () => {
-    describe("pxToRem", () => {
-      it("should convert 16px to 1rem", () => {
-        const result = unitConverter.pxToRem("16px", basePixelSize);
-        assert.equal(result, 1);
+      it("to Pt", () => {
+        const result = conversionController("1em", "em", "pt");
+        assert.equal(result, "0.083pt");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pxToRem("8px", basePixelSize);
-        assert.equal(result, 0.5);
+      it("to Pt", () => {
+        const result = conversionController("1em", "em", "pc");
+        assert.equal(result, "0.167pc");
       });
     });
-    describe("pxToEm", () => {
-      it("should convert 16px to 1em", () => {
-        const result = unitConverter.pxToEm("16px", basePixelSize);
-        assert.equal(result, 1);
+    describe("Pt", () => {
+      it("to Rem", () => {
+        const result = conversionController("1pt", "pt", "rem");
+        assert.equal(result, "0.063rem");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pxToEm("8px", basePixelSize);
-        assert.equal(result, 0.5);
+      it("to Em", () => {
+        const result = conversionController("1pt", "pt", "em");
+        assert.equal(result, "0.063em");
       });
-    });
-    describe("pxToPt", () => {
-      it("should convert 16px to 12Pt", () => {
-        const result = unitConverter.pxToPt("16px", basePixelSize);
-        assert.equal(result, 12);
+      it("to Px", () => {
+        const result = conversionController("1pt", "pt", "px");
+        assert.equal(result, "1.333px");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pxToPt("8px", basePixelSize);
-        assert.equal(result, 6);
+      it("to Pc", () => {
+        const result = conversionController("1pt", "pt", "pc");
+        assert.equal(result, "0.004pc");
       });
     });
-    describe("pxToPc", () => {
-      it("should convert 16px to 6Pc", () => {
-        const result = unitConverter.pxToPc("16px", basePixelSize);
-        assert.equal(result, 6);
+    describe("Pc", () => {
+      it("to Rem", () => {
+        const result = conversionController("1pc", "pc", "rem");
+        assert.equal(result, "1rem");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pxToPc("8px", basePixelSize);
-        assert.equal(result, 3);
+      it("to Em", () => {
+        const result = conversionController("1pc", "pc", "em");
+        assert.equal(result, "1em");
       });
-    });
-  });
-}
-function emConverterTests(basePixelSize: number) {
-  describe("Em Conversions", () => {
-    describe("emToPx", () => {
-      it("should convert 1em to base pixel size", () => {
-        const result = unitConverter.emToPx("1em", basePixelSize);
-        assert.equal(result, basePixelSize);
+      it("to Px", () => {
+        const result = conversionController("1pc", "pc", "px");
+        assert.equal(result, "1.333px");
       });
-      it("should handle fractional values", () => {
-        const result = unitConverter.emToPx("0.5em", basePixelSize);
-        assert.equal(result, basePixelSize / 2);
-      });
-    });
-    describe("emToRem", () => {
-      it("should convert 1em to 1em", () => {
-        const result = unitConverter.emToRem("1em", basePixelSize);
-        assert.equal(result, 1);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.emToRem("0.5em", basePixelSize);
-        assert.equal(result, 0.5);
-      });
-    });
-    describe("emToPt", () => {
-      it("should convert 1em to 100Pt", () => {
-        const result = unitConverter.emToPt("1em", basePixelSize);
-        assert.equal(result, 0.083);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.emToPt("0.5em", basePixelSize);
-        assert.equal(result, 0.042);
-      });
-    });
-    describe("emToPc", () => {
-      it("should convert 1em to 100Pc", () => {
-        const result = unitConverter.emToPc("1em", basePixelSize);
-        assert.equal(result, 0.167);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.emToPc("0.5em", basePixelSize);
-        assert.equal(result, 0.083);
-      });
-    });
-  });
-}
-function ptConverterTests(basePixelSize: number) {
-  describe("Pt Conversions", () => {
-    describe("ptToPx", () => {
-      it("should convert 1pt to 1.388px", () => {
-        const result = unitConverter.ptToPx("1pt", basePixelSize);
-        assert.equal(result, 1.333);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.ptToPx("0.5pt", basePixelSize);
-        assert.equal(result, 0.667);
-      });
-    });
-    describe("ptToRem", () => {
-      it("should convert 1pt to 0.063rem", () => {
-        const result = unitConverter.ptToRem("1pt", basePixelSize);
-        assert.equal(result, 0.063);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.ptToRem("0.5pt", basePixelSize);
-        assert.equal(result, 0.031);
-      });
-    });
-    describe("ptToEm", () => {
-      it("should convert 1pt to 0.063em", () => {
-        const result = unitConverter.ptToEm("1pt", basePixelSize);
-        assert.equal(result, 0.063);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.ptToEm("0.5pt", basePixelSize);
-        assert.equal(result, 0.031);
-      });
-    });
-    describe("ptToPc", () => {
-      it("should convert 1pt to 0.039pc", () => {
-        const result = unitConverter.ptToPc("1pt", basePixelSize);
-        assert.equal(result, 0.004);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.ptToPc("0.5pt", basePixelSize);
-        assert.equal(result, 0.002);
-      });
-    });
-  });
-}
-function pcConverterTests(basePixelSize: number) {
-  describe("Pc Conversions", () => {
-    describe("pcToPx", () => {
-      it("should convert 1pc to 1.333px", () => {
-        const result = unitConverter.pcToPx("1pc", basePixelSize);
-        assert.equal(result, 1.333);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pcToPx("0.5pc", basePixelSize);
-        assert.equal(result, 0.667);
-      });
-    });
-    describe("pcToRem", () => {
-      it("should convert 1pc to 1rem", () => {
-        const result = unitConverter.pcToRem("1pc", basePixelSize);
-        assert.equal(result, 1);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pcToRem("0.5pc", basePixelSize);
-        assert.equal(result, 0.5);
-      });
-    });
-    describe("pcToEm", () => {
-      it("should convert 1pc to 1em", () => {
-        const result = unitConverter.pcToEm("1pc", basePixelSize);
-        assert.equal(result, 1);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pcToEm("0.5pc", basePixelSize);
-        assert.equal(result, 0.5);
-      });
-    });
-    describe("pcToPt", () => {
-      it("should convert 1pc to 16pt", () => {
-        const result = unitConverter.pcToPt("1pc", basePixelSize);
-        assert.equal(result, 16);
-      });
-      it("should handle fractional values", () => {
-        const result = unitConverter.pcToPt("0.5pc", basePixelSize);
-        assert.equal(result, 8);
+      it("to Pt", () => {
+        const result = conversionController("1pc", "pc", "pt");
+        assert.equal(result, "16pt");
       });
     });
   });

@@ -39,7 +39,7 @@ function remConverterTests(basePixelSize: number) {
       });
     });
     describe("remToPt", () => {
-      it("should convert 1rem to 100Pt", () => {
+      it("should convert 1rem to 1.333pt", () => {
         const result = unitConverter.remToPt("1rem", basePixelSize);
         assert.equal(result, 1.333);
       });
@@ -49,7 +49,7 @@ function remConverterTests(basePixelSize: number) {
       });
     });
     describe("remToPc", () => {
-      it("should convert 1rem to 100Pc", () => {
+      it("should convert 1rem to 2.667pc", () => {
         const result = unitConverter.remToPc("1rem", basePixelSize);
         assert.equal(result, 2.667);
       });
@@ -127,7 +127,7 @@ function emConverterTests(basePixelSize: number) {
       });
     });
     describe("emToPt", () => {
-      it("should convert 1em to 100Pt", () => {
+      it("should convert 1em to 0.083pt", () => {
         const result = unitConverter.emToPt("1em", basePixelSize);
         assert.equal(result, 0.083);
       });
@@ -137,7 +137,7 @@ function emConverterTests(basePixelSize: number) {
       });
     });
     describe("emToPc", () => {
-      it("should convert 1em to 100Pc", () => {
+      it("should convert 1em to 0.167pc", () => {
         const result = unitConverter.emToPc("1em", basePixelSize);
         assert.equal(result, 0.167);
       });
