@@ -1,71 +1,61 @@
-# remify README
+# REMify
 
-This is the README for your extension "remify". After writing up a brief description, we recommend including the following sections.
+Tired of manually converting CSS units?  Say goodbye to pixel fatigue with REMify!
 
-## Features
+This handy extension takes the sting out of unit conversions, letting you focus on what matters: beautiful, pixel-perfect code. Simply select your pixel values, choose your target unit (rem or em), and voilà! REMify instantly transforms them, saving you precious time and mental energy.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+No more juggling calculators or memorizing conversion rates. REMify does the heavy lifting for you, so you can keep your workflow flowing smoothly. Whether you're a seasoned pro or just starting out, REMify makes CSS unit conversion a breeze.
 
-For example if there is an image subfolder under your extension project workspace:
+Give your fingers a break and let REMify take charge of your unit conversions. Download it today and experience the joy of effortless CSS!
 
-\!\[feature X\]\(images/feature-x.png\)
+[Download for Visual Studio Code](https://marketplace.visualstudio.com/items/kushagra-aa.remify)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## How to Use It
 
-## Requirements
+* Select one or more values(px,rem,em).
+* Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> for Mac.
+* Select the desired unit from dropdown
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Commands
 
-## Extension Settings
+* *Quick Convert: Expression*: Convert the selected value in the editor to a chosen unit using a dropdown menu.
+* *Quick Convert: Selected Value*: Enter a value and unit conversion expression (e.g., "16px to rem") and receive the converted value automatically copied to your clipboard.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Settings
 
-For example:
+You can change the default behavior of remify with the following settings.
 
-This extension contributes the following settings:
+To open VS Code settings, click the "gear" icon > then "Settings"
+or
+Press <kbd>Ctrl/Cmd</kbd>+<kbd>,</kbd>
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Available settings
 
-## Known Issues
+* `remify.baseFontSize` -  The base font size of the project.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+### Defaults
 
-## Release Notes
+ ```json
+ {
+    "remify.baseFontSize": "16px",
+ }
+ ```
 
-Users appreciate release notes as you update your extension.
+## Contributing
 
-### 1.0.0
+Please create an issue on GitHub if you experience a bug.
+I also welcome pull requests.
 
-Initial release of ...
+Read [Contribution Guide](./contribution.md)
 
-### 1.0.1
+## Repository & Feedback
 
-Fixed issue #.
+Please report issues related to this extension on the repository page.
 
-### 1.1.0
+[GitHub Repository](https://github.com/kushagra-aa/remify)
 
-Added features X, Y, and Z.
+## Developer Information
 
----
+Kushagra Agnihotri
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Please Visit [Here](https://kushagra-aa.vercel.app/) for additional information
