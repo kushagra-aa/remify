@@ -3,11 +3,11 @@ import { normalController, stringToUnitController } from "./commandControllers";
 
 export function activate(context: vscode.ExtensionContext) {
   let converterDisposable = vscode.commands.registerCommand(
-    "remify.normalConverter",
+    "remifyy.normalConverter",
     normalController
   );
   let convertWithOptionsDisposable = vscode.commands.registerCommand(
-    "remify.stringToUnit",
+    "remifyy.stringToUnit",
     stringToUnitController
   );
 

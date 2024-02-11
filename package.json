@@ -1,17 +1,17 @@
 {
-  "name": "remify",
-  "displayName": "REMify",
+  "name": "remifyy",
+  "displayName": "REMifyy",
   "description": "Making Converting CSS Size Units Easy N Fun",
   "publisher": "kushagra-aa",
   "license": "ISC",
-  "homepage": "https://github.com/kushagra-aa/remify/blob/master/README.md",
+  "homepage": "https://github.com/kushagra-aa/remifyy/blob/master/README.md",
   "bugs": {
-    "url": "https://github.com/kushagra-aa/remify/issues",
+    "url": "https://github.com/kushagra-aa/remifyy/issues",
     "email": "kushagraagnihotri24@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kushagra-aa/remify"
+    "url": "https://github.com/kushagra-aa/remifyy"
   },
   "version": "1.0.1",
   "engines": {
@@ -38,19 +38,19 @@
   "contributes": {
     "commands": [
       {
-        "command": "remify.stringToUnit",
+        "command": "remifyy.stringToUnit",
         "title": "Quick Convert: Expression"
       },
       {
-        "command": "remify.normalConverter",
+        "command": "remifyy.normalConverter",
         "title": "Quick Convert: Selected Value"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "REMify configuration",
+      "title": "REMifyy configuration",
       "properties": {
-        "remify.baseFontSize": {
+        "remifyy.baseFontSize": {
           "type": "string",
           "default": "16px",
           "description": "The Base Font Size of the project"

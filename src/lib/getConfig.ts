@@ -1,4 +1,4 @@
 import { workspace } from "vscode";
 
 export const getBaseFontSize = () =>
-  workspace.getConfiguration().get<string>("remify.baseFontSize");
+  workspace.getConfiguration().get<string>("remifyy.baseFontSize");

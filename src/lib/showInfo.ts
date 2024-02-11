@@ -1,6 +1,6 @@
 import { window } from "vscode";
 
 const showInfo = (text: string) =>
-  window.showInformationMessage(`REMify Says: ${text}`);
+  window.showInformationMessage(`REMifyy Says: ${text}`);
 
 export default showInfo;
