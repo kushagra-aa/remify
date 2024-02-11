@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/kushagra-aa/remifyy"
   },
-  "version": "1.0.2",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.83.0"
   },
